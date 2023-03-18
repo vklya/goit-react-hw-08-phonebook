@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { fetchLogin, fecthCurrent, fetchLogout, fetchSignup } from "./operations";
+import { fetchLogin, fetchCurrent, fetchLogout, fetchSignup } from "./operations";
 
 const initialState = {
     user: {},
@@ -42,9 +42,9 @@ const authSlice = createSlice({
             .addCase(fetchLogin.fulfilled, handleFulfilled)
             .addCase(fetchLogin.rejected, handleRejected)
             //refresh
-            .addCase(fecthCurrent.pending, handlePending)
-            .addCase(fecthCurrent.fulfilled, handleFulfilled)
-            .addCase(fecthCurrent.rejected, (state, { payload }) => {
+            .addCase(fetchCurrent.pending, handlePending)
+            .addCase(fetchCurrent.fulfilled, handleFulfilled)
+            .addCase(fetchCurrent.rejected, (state, { payload }) => {
                 state.isLoading = false;
                 state.token = "";
                 state.error = payload;

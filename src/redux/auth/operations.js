@@ -28,7 +28,7 @@ export const fetchLogin = createAsyncThunk(
 );
 
 export const fetchLogout = createAsyncThunk(
-    'auth/signup',
+    'auth/logout',
     async (_, { rejectWithValue }) => {
         try {
             const res = await logout();
@@ -40,7 +40,7 @@ export const fetchLogout = createAsyncThunk(
     }
 );
 
-export const fecthCurrent = createAsyncThunk(
+export const fetchCurrent = createAsyncThunk(
     'auth/current',
     async (_, { rejectWithValue, getState }) => {
         try {

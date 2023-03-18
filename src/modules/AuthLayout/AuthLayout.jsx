@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fecthCurrent } from 'redux/auth/operations';
+import { fetchCurrent } from 'redux/auth/operations';
 
 const AuthLayout = ({ children }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fecthCurrent());
+        dispatch(fetchCurrent());
     }, [dispatch]);
 
     return <>{children}</>;
