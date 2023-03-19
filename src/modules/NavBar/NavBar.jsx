@@ -7,16 +7,26 @@ import PrivateNav from "modules/PrivateNav";
 import PublicNav from "modules/PublicNav";
 
 import css from './nav.module.scss';
+import styled from "styled-components";
+
+const StyledLink = styled(NavLink)`
+  color: inherit;
+  &.active {
+    color: #ffd700;
+  }
+`;
 
 export default function NavBar() {
     const isLogin = useSelector(isUserLogin);
 
     return (
       <header className={css.header}>
-        <NavLink to="/" className={css.home}>
-          Home
-        </NavLink>
-        {isLogin ? <PrivateNav /> : <PublicNav />}
+        <nav className={css.nav}>
+          <StyledLink to="/" className={css.home}>
+            Home
+          </StyledLink>
+          {isLogin ? <PrivateNav /> : <PublicNav />}
+        </nav>
       </header>
     );
 }
