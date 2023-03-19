@@ -1,0 +1,13 @@
+.list {
+    display: flex;
+    gap: 40px;
+}
+
+.link {
+    transition: transform 150ms linear;
+    
+    &:hover,
+    &:focus {
+        transform: scale(1.12);
+    }
+}

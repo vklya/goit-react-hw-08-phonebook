@@ -17,7 +17,7 @@ import { setFilter } from 'redux/contacts/filterSlice';
 
 import css from './app.module.scss';
 
-export function Home() {
+export default function Contacts() {
   const filteredContacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
@@ -40,22 +40,27 @@ export function Home() {
 
   const isBooks = Boolean(filteredContacts.length);
 
-  return (
-    <div className={css.div}>
-      <Section title="Phonebook">
-        <Form onSubmit={handleAddContact} />
-      </Section>
-      <Section title="Contacts">
-        <Filter value={filter} onChange={changeFilter} />
-        {isBooks ? (
-          <List
-            contacts={filteredContacts}
-            onDeleteContact={handleDeleteContact}
-          />
-        ) : (
-          <p className={css.message}>There are no contacts in the phonebook.</p>
-        )}
-      </Section>
-    </div>
-  );
+    return (
+      <main>
+        <h1 className={css.heading}>Here is your own phonebook ✨</h1>
+        <div className={css.div}>
+          <Section title="Add new contact">
+            <Form onSubmit={handleAddContact} />
+          </Section>
+          <Section title="Contacts">
+            <Filter value={filter} onChange={changeFilter} />
+            {isBooks ? (
+              <List
+                contacts={filteredContacts}
+                onDeleteContact={handleDeleteContact}
+              />
+            ) : (
+              <p className={css.message}>
+                There are no contacts in the phonebook.
+              </p>
+            )}
+          </Section>
+        </div>
+      </main>
+    );
 }

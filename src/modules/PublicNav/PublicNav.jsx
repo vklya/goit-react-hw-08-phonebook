@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
+import css from './guest.module.scss';
 
 export default function PublicNav() {
     return (
-      <ul>
-        <li>
-          <NavLink to="/register">Register</NavLink>
+      <ul className={css.list}>
+        <li className={css.link}>
+          <NavLink to="/register">Sign up</NavLink>
         </li>
-        <li>
-          <NavLink to="/login">Login</NavLink>
+        <li className={css.link}>
+          <NavLink to="/login">Sign in</NavLink>
         </li>
       </ul>
     );

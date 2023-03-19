@@ -6,8 +6,8 @@ export const getContacts = async () => {
 }
 
 export const addContact = async (contact) => {
-    const { data } = await instance.post('/contacts', contact);
-    return data;
+    const { data: result } = await instance.post('/contacts', contact);
+    return result;
 }
 
 export const deleteContact = async (id) => {

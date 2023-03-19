@@ -6,28 +6,28 @@ export const instance = axios.create({
 
 const setToken = token => {
     if(token) {
-        return instance.defaults.headers.authorization = `Bearer ${token}`;
+        return instance.defaults.headers.common.authorization = `Bearer ${token}`;
     }
-    instance.defaults.headers.authorization = "";
+    instance.defaults.headers.common.authorization = "";
 }
 
-export const signup = async (data) => {
-    const {data: result} = await instance.post("/users/signup", data);
-    setToken(result.token);
-    return result;
+export const signup = async (user) => {
+    const {data} = await instance.post("/users/signup", user);
+    setToken(data.token);
+    return data;
 }
 
-export const login = async (data) => {
-    const {data: result} = await instance.post("/users/login", data);
-    setToken(result.token);
-    return result;
+export const login = async (user) => {
+    const {data} = await instance.post("/users/login", user);
+    setToken(data.token);
+    return data;
 }
 
 export const refresh = async(token) => {
     try {
         setToken(token);
-        const {data} = await instance.get("/users/current");
-        return data;
+        const { data } = await instance.get("/users/current");
+        return {data, token};
     }
     catch(error) {
         setToken();

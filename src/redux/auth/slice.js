@@ -21,7 +21,7 @@ const handleRejected = (state, {payload}) => {
 }
 
 const handleFulfilled = (state, { payload }) => {
-    const { user, token } = payload;
+    const { token, user } = payload;
     state.isLoading = false;
     state.user = user;
     state.token = token;
@@ -43,7 +43,13 @@ const authSlice = createSlice({
             .addCase(fetchLogin.rejected, handleRejected)
             //refresh
             .addCase(fetchCurrent.pending, handlePending)
-            .addCase(fetchCurrent.fulfilled, handleFulfilled)
+            .addCase(fetchCurrent.fulfilled, (state, { payload }) => {
+                const { token, data } = payload;
+                state.isLoading = false;
+                state.user = data;
+                state.token = token;
+                state.isLogin = true;
+            })
             .addCase(fetchCurrent.rejected, (state, { payload }) => {
                 state.isLoading = false;
                 state.token = "";

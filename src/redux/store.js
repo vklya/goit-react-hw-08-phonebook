@@ -15,9 +15,9 @@ import { filterReducer } from "./contacts/filterSlice";
 import { authReducer } from "./auth/slice";
 
 const persistConfig = {
-    key: 'root',
+    key: 'auth',
     storage,
-    whitelist: ['token'],
+    // whitelist: ['token', 'user'],
 }
 
 const persistedAuthReduser = persistReducer(persistConfig, authReducer);

@@ -8,8 +8,8 @@ export const fetchSignup = createAsyncThunk(
             const res = await signup(data);
             return res;
         }
-        catch (error) {
-            return rejectWithValue(error.message);
+        catch ({responce}) {
+            return rejectWithValue(responce);
         }
     }
 );
@@ -48,8 +48,8 @@ export const fetchCurrent = createAsyncThunk(
             const res = await refresh(auth.token);
             return res;
         }
-        catch (error) {
-            return rejectWithValue(error.message);
+        catch ({response}) {
+            return rejectWithValue(response);
         }
     },
     {
@@ -57,8 +57,7 @@ export const fetchCurrent = createAsyncThunk(
             const { auth } = getState();
             if (!auth.token) {
                 return false;
-            }
-        
+            }       
         }
     }
 )
